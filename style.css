@@ -1,0 +1,51 @@
+:root {
+  --darkbackgroundcolor: rgb(18, 18, 18);
+  --darkhefooterbackcolor:  rgb(30, 30, 30);
+  --darktextcolor: rgb(255, 255, 255);
+  --cardbackgroundcolor: rgb(50, 52, 66);
+  --cardbackgroundshadow: rgb(247, 90, 38);;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html, body {
+  background-color: var(--cardbackgroundcolor);
+  color: var(--darktextcolor);
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
+}
+body {
+  min-height: 100vh;
+}
+
+
+
+
+
+
+
+/* Footer */
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+  height: 2.5rem;
+  gap: 5px;
+  font-size: 14px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+a {
+  text-decoration: none;
+}
+a:hover {
+  color: blueviolet;
+}
+a:active {
+  color: purple;
+}
