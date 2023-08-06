@@ -20,11 +20,48 @@ body {
   min-height: 100vh;
 }
 
+/* game space */
+.gameBoard {
+  display: grid;
+  grid-template-columns: 75px 75px 75px;
+  grid-template-rows: 75px 75px 75px;
+  gap: 7px;
+  justify-content: center;
+  margin-top: 5rem;
+}
 
+.gameBoard button {
+  border: none;
+  background-color: var(--darkhefooterbackcolor);
+  border-radius: 5px;
+}
+.gameBoard button:hover {
+  background-color: rgb(30, 30, 30, .181);
+}
+.gameBoard button:active {
+  background-color:  var(--darkhefooterbackcolor);
+}
 
+.boardReset{
+  display: flex;
+  justify-content: center;
+  padding: 10px;
 
-
-
+}
+.gameBoardReset {
+  border: none;
+  background-color: var(--darkhefooterbackcolor);
+  border-radius: 5px;
+  height: 30px;
+  width: 70px;
+  color: white;
+}
+.gameBoardReset:hover {
+  background-color: rgb(30, 30, 30, .181);
+}
+.gameBoardReset:active {
+  background-color:  var(--darkhefooterbackcolor);
+}
 
 /* Footer */
 footer {
