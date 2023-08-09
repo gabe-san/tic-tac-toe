@@ -59,21 +59,29 @@ buttonInput.forEach(button => {
 */
 
 // Define gameBoard
-function gameBoard() {
+const gameBoard = (() => {
   const rows = 3;
   const columns = 3;
   const board = [];
   for (let i = 0; i < rows; i++) {
-    board[i] = [];
+    const row = [];
     for (let j = 0; j < columns; j++) {
-      board[i].push(buttonCell());
+      row.push(' ');
       // define buttonCell function as define value as 0, and define addInput = (player#) => {
       // value = player#(changes cell value in DOM to 'X' or 'O' depending on turn
+      const tile = document.createElement('button');
+      tile.id = `${i.toString()}-${j.toString()}`;
+      document.querySelector('.gameBoard').append(tile);
     }
   }
-}
+  const retrieveGameBoard = () => board;
 
-const Player = (input, turn) => {};
+
+})();
+
+
+
+const Player = (input, turn) => { };
 
 const playerOne = Player('X', 0);
 const playerTwo = Player('O', 1);
