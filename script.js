@@ -1,25 +1,27 @@
 /* pseudocode
 
-0 | 1 | 2
-3 | 4 | 5
-6 | 7 | 8
+0-0 | 0-1 | 0-2
+1-0 | 1-1 | 1-2
+2-0 | 2-1 | 2-2
 logic: fastest win is 5 turns
 draw: turn 9
-win conditions: 3 in a row: rows, columns, diagonals
+win conditions: 3 in a row: rows, columns, anti/ diagonals
 function checkRow() {
   for (let i = 0;)
 }
+function checkCol() {
 
+}
+function checkDiag() {
+
+}
+funtion checkAntiDiag() {
+
+}
 
 check/clear gameBoard if not starting new game
 
-player1 = X
-player2 = O
 
-Factory Function:
-const Player = (player1, 0(counter for turn)) => {
-  
-}
 
 
 IIFE:
@@ -58,30 +60,61 @@ buttonInput.forEach(button => {
 
 */
 
+const Player = (input) => {
+  this.input = input;
+  const getInput = () => input;
+  return {
+    getInput
+  };
+};
+
+const playerOne = Player('X');
+const playerTwo = Player('O');
+const currentPlayer = playerOne;
+let board;
+const gameOver = false;
+
 // Define gameBoard
+
 const gameBoard = (() => {
   const rows = 3;
   const columns = 3;
-  const board = [];
+  board = [];
   for (let i = 0; i < rows; i++) {
-    const row = [];
+    board[i] = [];
     for (let j = 0; j < columns; j++) {
-      row.push(' ');
-      // define buttonCell function as define value as 0, and define addInput = (player#) => {
-      // value = player#(changes cell value in DOM to 'X' or 'O' depending on turn
+      board[i].push(' ');
+
       const tile = document.createElement('button');
-      tile.id = `${i.toString()}-${j.toString()}`;
-      document.querySelector('.gameBoard').append(tile);
+      tile.id = `${i.toString()}-${j.toString()}`; // helps for checking gameState via algorithm
+      document.querySelector('.gameBoard').appendChild(tile);
     }
   }
-  const retrieveGameBoard = () => board;
-
-
 })();
 
 
+const displayTurn = (() => {
+  const addInput = () => {
+    if (gameOver) {
+      return;
+    }
+    const gameInputCoord = this.id.split('-');
+    const r = parseInt(gameInputCoord[0], 10);
+    const c = parseInt(gameInputCoord[1], 10);
+    board[r][c] = currentPlayer;
+    const tile = this;
+    if (currentPlayer === playerOne) {
+      tile.textContent = 'X';
+    }
+    else {
+      tile.textContent = 'O';
+    }
+  }
+  return { addInput };
+})();
 
-const Player = (input, turn) => { };
+const buttonInput = document.querySelectorAll('buttons')
+buttonInput.forEach(button => {
+  button.addEventListener('click', displayTurn.addInput)
+})
 
-const playerOne = Player('X', 0);
-const playerTwo = Player('O', 1);
