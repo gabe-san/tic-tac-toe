@@ -28,13 +28,13 @@ body {
   gap: 7px;
   justify-content: center;
   margin-top: 5rem;
+  color: var(--darktextcolor);
 }
 
 .gameBoard button {
   border: none;
   background-color: var(--darkhefooterbackcolor);
   border-radius: 5px;
-  color: var(--darktextcolor);
 }
 .gameBoard button:hover {
   background-color: rgb(30, 30, 30, 0.181);
@@ -65,7 +65,12 @@ body {
 .tile {
   font-size: 32px;
   font-weight: 500;
+  color: white;
 }
+.winningTiles {
+  color: yellow;
+}
+
 /* Footer */
 footer {
   display: flex;

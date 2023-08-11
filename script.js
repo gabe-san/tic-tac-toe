@@ -68,14 +68,13 @@ const Player = (input) => {
   };
 };
 
-const playerOne = Player('X');
-const playerTwo = Player('O');
-const currentPlayer = playerOne;
+const playerOne = 'X';
+const playerTwo = 'O';
+let currentPlayer = playerOne;
 let board;
-const gameOver = false;
+let gameOver = false;
 
 // Define gameBoard
-
 const gameBoard = (() => {
   const rows = 3;
   const columns = 3;
@@ -87,34 +86,81 @@ const gameBoard = (() => {
 
       const tile = document.createElement('button');
       tile.id = `${i.toString()}-${j.toString()}`; // helps for checking gameState via algorithm
+      tile.classList.add('tile');
+      tile.addEventListener('click', addPlayerInput)
       document.querySelector('.gameBoard').appendChild(tile);
     }
   }
+  const writeToDOM = (selector, message) => {
+    document.querySelector(selector).innerHTML = message;
+  }
+  return {
+    writeToDOM
+  }
 })();
 
+function addPlayerInput() {
+  if (gameOver) {
+    return;
+  }
+  const gameInputCoord = this.id.split('-');
+  const r = parseInt(gameInputCoord[0], 10);
+  const c = parseInt(gameInputCoord[1], 10);
+  if (board[r][c] !== ' ') {
+    return;
+  }
+  board[r][c] = currentPlayer;
+  this.innerHTML = currentPlayer;
+  if (currentPlayer === playerOne) {
+    currentPlayer = playerTwo;
+  }
+  else {
+    currentPlayer = playerOne;
+  }
+  checkGameState();
+}
 
-const displayTurn = (() => {
-  const addInput = () => {
-    if (gameOver) {
+function checkGameState() {
+  // horizontal
+  for (let i = 0; i < 3; i++) {
+    if (board[i][0] === board[i][1] && board[i][1] === board[i][2] && board[i][0] !== ' ') {
+      for (let j = 0; j < 3; j++) {
+        const tile = document.getElementById(`${i.toString()}-${j.toString()}`)
+        tile.classList.add('winningTiles');
+      }
+      gameOver = true;
       return;
     }
-    const gameInputCoord = this.id.split('-');
-    const r = parseInt(gameInputCoord[0], 10);
-    const c = parseInt(gameInputCoord[1], 10);
-    board[r][c] = currentPlayer;
-    const tile = this;
-    if (currentPlayer === playerOne) {
-      tile.textContent = 'X';
-    }
-    else {
-      tile.textContent = 'O';
+  }
+  // vertical
+  for (let j = 0; j < 3; j++) {
+    if (board[0][j] === board[1][j] && board[1][j] === board[2][j] && board[0][j] !== ' ') {
+      for (let i = 0; i < 3; i++) {
+        const tile = document.getElementById(`${i.toString()}-${j.toString()}`)
+        tile.classList.add('winningTiles');
+      }
+      gameOver = true;
+      return;
     }
   }
-  return { addInput };
-})();
+  // diagonal
+  if (board[0][0] === board[1][1] && board[1][1] === board[2][2] && board[0][0] !== ' ') {
+    for (let i = 0; i < 3; i++) {
+      const tile = document.getElementById(`${i.toString()}-${i.toString()}`)
+      tile.classList.add('winningTiles');
+    }
+    gameOver = true;
+    return;
+  }
+  // antidiag
+  if (board[0][2] === board[1][1] && board[1][1] === board[2][0] && board[0][2] !== ' ') {
+    let tile = document.getElementById('0-2');
+    tile.classList.add('winningTiles');
+    tile = document.getElementById('1-1');
+    tile.classList.add('winningTiles');
+    tile = document.getElementById('2-0');
+    tile.classList.add('winningTiles');
+    gameOver = true;
 
-const buttonInput = document.querySelectorAll('buttons')
-buttonInput.forEach(button => {
-  button.addEventListener('click', displayTurn.addInput)
-})
-
+  }
+}
