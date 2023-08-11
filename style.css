@@ -1,20 +1,20 @@
 :root {
   --darkbackgroundcolor: rgb(18, 18, 18);
-  --darkhefooterbackcolor:  rgb(30, 30, 30);
+  --darkhefooterbackcolor: rgb(30, 30, 30);
   --darktextcolor: rgb(255, 255, 255);
   --cardbackgroundcolor: rgb(50, 52, 66);
-  --cardbackgroundshadow: rgb(247, 90, 38);;
+  --cardbackgroundshadow: rgb(247, 90, 38);
 }
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-html, body {
+html,
+body {
   background-color: var(--cardbackgroundcolor);
   color: var(--darktextcolor);
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-
 }
 body {
   min-height: 100vh;
@@ -34,19 +34,19 @@ body {
   border: none;
   background-color: var(--darkhefooterbackcolor);
   border-radius: 5px;
+  color: var(--darktextcolor);
 }
 .gameBoard button:hover {
-  background-color: rgb(30, 30, 30, .181);
+  background-color: rgb(30, 30, 30, 0.181);
 }
 .gameBoard button:active {
-  background-color:  var(--darkhefooterbackcolor);
+  background-color: var(--darkhefooterbackcolor);
 }
 
-.boardReset{
+.boardReset {
   display: flex;
   justify-content: center;
   padding: 10px;
-
 }
 .gameBoardReset {
   border: none;
@@ -57,12 +57,15 @@ body {
   color: white;
 }
 .gameBoardReset:hover {
-  background-color: rgb(30, 30, 30, .181);
+  background-color: rgb(30, 30, 30, 0.181);
 }
 .gameBoardReset:active {
-  background-color:  var(--darkhefooterbackcolor);
+  background-color: var(--darkhefooterbackcolor);
 }
-
+.tile {
+  font-size: 32px;
+  font-weight: 500;
+}
 /* Footer */
 footer {
   display: flex;
