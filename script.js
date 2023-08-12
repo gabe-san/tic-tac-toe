@@ -1,5 +1,5 @@
 /* pseudocode
-to do: display winning player, check for tie & display tie, fix restart button, ui change
+to do: check for tie & display tie, fix restart button, ui change
 */
 
 const Player = (input) => {
@@ -33,12 +33,7 @@ const gameBoard = (() => {
       document.querySelector('.gameBoard').appendChild(tile);
     }
   }
-  const writeToDOM = (selector, message) => {
-    document.querySelector(selector).innerHTML = message;
-  }
-  return {
-    writeToDOM
-  }
+
 })();
 
 function addPlayerInput() {
@@ -60,6 +55,7 @@ function addPlayerInput() {
     currentPlayer = playerOne.getInput();
   }
   checkGameState();
+  playerTurn();
 }
 
 function checkGameState() {
@@ -104,5 +100,20 @@ function checkGameState() {
     tile.classList.add('winningTiles');
     gameOver = true;
 
+  }
+  // tie
+
+}
+
+function playerTurn() {
+  const playerTurnMessage = document.querySelector('.playerTurn');
+  if (gameOver && currentPlayer === playerOne.getInput()) {
+    playerTurnMessage.textContent = 'O has won the game.'
+  }
+  else if (gameOver && currentPlayer === playerTwo.getInput()) {
+    playerTurnMessage.textContent = 'X has won the game.'
+  }
+  else {
+    playerTurnMessage.textContent = `${currentPlayer}'s turn`
   }
 }

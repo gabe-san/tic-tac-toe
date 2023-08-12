@@ -14,12 +14,23 @@ html,
 body {
   background-color: var(--cardbackgroundcolor);
   color: var(--darktextcolor);
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 body {
   min-height: 100vh;
 }
 
+h2 {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 36px;
+}
+.playerTurn {
+  display: flex;
+  justify-content: center;
+}
 /* game space */
 .gameBoard {
   display: grid;
@@ -27,7 +38,7 @@ body {
   grid-template-rows: 75px 75px 75px;
   gap: 7px;
   justify-content: center;
-  margin-top: 5rem;
+  margin-top: 3rem;
   color: var(--darktextcolor);
 }
 
