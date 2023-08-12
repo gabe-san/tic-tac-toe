@@ -1,7 +1,6 @@
 /* pseudocode
-to do: check for tie & display tie, fix restart button, ui change
+to do: fix restart button
 */
-
 const Player = (input) => {
   this.input = input;
   const getInput = () => input;
@@ -15,6 +14,7 @@ const playerTwo = Player('O');
 let currentPlayer = playerOne.getInput();
 let board;
 let gameOver = false;
+let turn = 0;
 
 // Define gameBoard
 const gameBoard = (() => {
@@ -33,8 +33,12 @@ const gameBoard = (() => {
       document.querySelector('.gameBoard').appendChild(tile);
     }
   }
-
+  const checkFull = (array) => array.every(row => row.every(cell => cell !== ' ')); // nested every to check every cell in each row
+  return {
+    checkFull
+  }
 })();
+
 
 function addPlayerInput() {
   if (gameOver) {
@@ -50,9 +54,11 @@ function addPlayerInput() {
   this.innerHTML = currentPlayer;
   if (currentPlayer === playerOne.getInput()) {
     currentPlayer = playerTwo.getInput();
+    turn++;
   }
   else {
     currentPlayer = playerOne.getInput();
+    turn++;
   }
   checkGameState();
   playerTurn();
@@ -99,15 +105,20 @@ function checkGameState() {
     tile = document.getElementById('2-0');
     tile.classList.add('winningTiles');
     gameOver = true;
-
+    return;
   }
   // tie
-
+  if (gameBoard.checkFull(board) && turn === 9) {
+    gameOver = true;
+  }
 }
 
 function playerTurn() {
   const playerTurnMessage = document.querySelector('.playerTurn');
-  if (gameOver && currentPlayer === playerOne.getInput()) {
+  if (gameOver && gameBoard.checkFull(board) && turn === 9) {
+    playerTurnMessage.textContent = 'Game is a tie.'
+  }
+  else if (gameOver && currentPlayer === playerOne.getInput()) {
     playerTurnMessage.textContent = 'O has won the game.'
   }
   else if (gameOver && currentPlayer === playerTwo.getInput()) {
@@ -117,3 +128,4 @@ function playerTurn() {
     playerTurnMessage.textContent = `${currentPlayer}'s turn`
   }
 }
+
