@@ -1,6 +1,6 @@
 # tic-tac-toe
 
-Link: _Available later_  
+Link: https://gabe-san.github.io/tic-tac-toe/
 Playable Tic-Tac-Toe game in browser. Uses HTML, CSS, and JS.  
 Future Plans to make Player vs. AI mode.
 

@@ -1,7 +1,4 @@
 /* eslint-disable no-param-reassign */
-/* pseudocode
- TO DO: git clone project template and update after tic tac toe finished
-*/
 const Player = (input) => {
   this.input = input;
   const getInput = () => input;
