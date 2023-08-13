@@ -1,5 +1,6 @@
+/* eslint-disable no-param-reassign */
 /* pseudocode
-to do: fix restart button
+ TO DO: git clone project template and update after tic tac toe finished
 */
 const Player = (input) => {
   this.input = input;
@@ -129,3 +130,20 @@ function playerTurn() {
   }
 }
 
+const resetGameBtn = document.querySelector('.gameBoardReset');
+resetGameBtn.addEventListener('click', () => {
+  gameOver = false;
+  turn = 0;
+  currentPlayer = playerOne.getInput();
+  const playerTurnMessage = document.querySelector('.playerTurn');
+  playerTurnMessage.textContent = 'X\'s turn'
+  for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++)
+      board[i][j] = ' ';
+  }
+  const tile = document.querySelectorAll('.tile');
+  tile.forEach((cell) => {
+    cell.classList.remove('winningTiles');
+    cell.innerText = ' ';
+  })
+})
