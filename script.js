@@ -113,7 +113,8 @@ function checkGameState() {
 
 function playerTurn() {
   const playerTurnMessage = document.querySelector('.playerTurn');
-  if (gameOver && gameBoard.checkFull(board) && turn === 9) {
+  const hasClass = (arr, className) => arr.some(row => row[0].includes(className));
+  if (gameOver && gameBoard.checkFull(board) && turn === 9 && hasClass(board, 'winningTiles') === false) {
     playerTurnMessage.textContent = 'Game is a tie.'
   }
   else if (gameOver && currentPlayer === playerOne.getInput()) {
@@ -144,3 +145,4 @@ resetGameBtn.addEventListener('click', () => {
     cell.innerText = ' ';
   })
 })
+
